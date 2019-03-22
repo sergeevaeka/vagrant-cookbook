@@ -29,7 +29,7 @@ echo "$state"
 if [ "$state" == running ]; then
    echo "System is running without failed services"
 else  
-   if [ "$state" == "degraded"]; then
+   if [ "$state" == "degraded" ]; then
         systemctl --no-pager --failed > failed_units.txt
         systemctl list-units --type=service --state=running > running_service.txt
         echo "System os running but some sevices are failed, see failed_service.txt and running_service.txt"

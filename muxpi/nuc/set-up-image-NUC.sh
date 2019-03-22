@@ -28,7 +28,7 @@
 
 set -e
 
-If you want to run the neptune image, run `./set-up-image_NUC.sh neptune`
+#If you want to run the neptune image, run `./set-up-image_NUC.sh neptune`
 NEPTUNE_IMAGE="$1"
 
 HOME="/home/muxpi"
@@ -37,7 +37,7 @@ IMAGES="${HOME}/images"
 # delete the image folder with old images
 rm -rf $IMAGES
 
-The url for the latest successful nightly build.
+#The url for the latest successful nightly build.
 VARIANT_MINIMAL="core-image-pelux-minimal-dev-intel-corei7-64"
 URL_MINIMAL="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_intel/$VARIANT_MINIMAL*/*zip*/artifacts_intel.zip"
 
@@ -93,8 +93,14 @@ stm -ts
 stm -dut   
 stm -m 30s -tick 
 # time for flashing
-sleep 10s
+#sleep 120s
 cd /home/muxpi/scripts
+
+while ! ping -c 1 -W 1 192.168.1.3; do
+    echo "Waiting for 192.168.1.3 - network interface might be down..."
+    sleep 1
+done
+
 scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/muxpi/scripts/validation-NUC.sh root@192.168.1.3:/home
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@192.168.1.3 "/home/validation-NUC.sh"
 
