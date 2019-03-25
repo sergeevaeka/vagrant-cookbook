@@ -96,13 +96,13 @@ stm -m 30s -tick
 #sleep 120s
 cd /home/muxpi/scripts
 
-while ! ping -c 1 -W 1 192.168.1.3; do
-    echo "Waiting for 192.168.1.3 - network interface might be down..."
+while ! ping -c 1 -W 1  172.31.172.206; do
+    echo "Waiting for  172.31.172.206 - network interface might be down..."
     sleep 1
 done
 
-scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/muxpi/scripts/validation-NUC.sh root@192.168.1.3:/home
-ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@192.168.1.3 "/home/validation-NUC.sh"
+scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/muxpi/scripts/validation-NUC.sh root@172.31.172.206:/home
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@172.31.172.206 "/home/validation-NUC.sh"
 
 
 
