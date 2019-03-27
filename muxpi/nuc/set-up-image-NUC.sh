@@ -32,7 +32,7 @@ set -e
 NEPTUNE_IMAGE="$2"
 DUT_IP="$1"
 
-HOME="/home/pi"
+HOME="/home/muxpi"
 IMAGES="${HOME}/images"
 
 # delete the image folder with old images
@@ -57,12 +57,14 @@ fi
 
 mkdir -p $IMAGES
 
-wget $URL -P $IMAGES
+wget -nv $URL -P $IMAGES
 if [ $? == 0 ]; then
    echo "Image downloaded"
 fi
 set +e
-7z x $IMAGES/*.zip -o$IMAGES
+#7z x $IMAGES/*.zip -o$IMAGES
+
+unzip $IMAGES/*.zip -d $IMAGES
 if [ $?==0 ]; then
        echo "File unziped without errors"
 else
@@ -94,14 +96,14 @@ stm -ts
 stm -dut   
 # stm -m 30s -tick 
 # time for flashing
-cd /home/pi/scripts
+cd /home/muxpi/scripts
 
 while ! ping -c 1 -W 1  $DUT_IP; do
     echo "Waiting for  ${DUT_IP} - network interface might be down..."
     sleep 1
 done
 
-scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/pi/scripts/validation-NUC.sh root@$DUT_IP:/home
+scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/muxpi/scripts/validation-NUC.sh root@$DUT_IP:/home
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@$DUT_IP "/home/validation-NUC.sh"
 
 
