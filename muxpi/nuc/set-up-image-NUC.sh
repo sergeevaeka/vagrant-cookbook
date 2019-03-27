@@ -29,7 +29,8 @@
 set -e
 
 #If you want to run the neptune image, run `./set-up-image_NUC.sh neptune`
-NEPTUNE_IMAGE="$1"
+NEPTUNE_IMAGE="$2"
+DUT_IP="$1"
 
 HOME="/home/muxpi"
 IMAGES="${HOME}/images"
@@ -91,18 +92,17 @@ fi
 # reboot the dut
 stm -ts
 stm -dut   
-stm -m 30s -tick 
+# stm -m 30s -tick 
 # time for flashing
-#sleep 120s
 cd /home/muxpi/scripts
 
-while ! ping -c 1 -W 1  172.31.172.206; do
-    echo "Waiting for  172.31.172.206 - network interface might be down..."
+while ! ping -c 1 -W 1  $DUT_IP; do
+    echo "Waiting for  ${DUT_IP} - network interface might be down..."
     sleep 1
 done
 
-scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/muxpi/scripts/validation-NUC.sh root@172.31.172.206:/home
-ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@172.31.172.206 "/home/validation-NUC.sh"
+scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/pi/scripts/validation-NUC.sh pi@$DUT_IP:/home
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no pi@$DUT_IP "/home/validation-NUC.sh"
 
 
 
