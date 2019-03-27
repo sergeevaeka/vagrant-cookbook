@@ -101,8 +101,8 @@ while ! ping -c 1 -W 1  $DUT_IP; do
     sleep 1
 done
 
-scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/pi/scripts/validation-NUC.sh pi@$DUT_IP:/home
-ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no pi@$DUT_IP "/home/validation-NUC.sh"
+scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/pi/scripts/validation-NUC.sh root@$DUT_IP:/home
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@$DUT_IP "/home/validation-NUC.sh"
 
 
 
