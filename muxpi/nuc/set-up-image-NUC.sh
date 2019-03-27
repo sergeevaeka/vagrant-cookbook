@@ -32,7 +32,7 @@ set -e
 NEPTUNE_IMAGE="$2"
 DUT_IP="$1"
 
-HOME="/home/muxpi"
+HOME="/home/pi"
 IMAGES="${HOME}/images"
 
 # delete the image folder with old images
