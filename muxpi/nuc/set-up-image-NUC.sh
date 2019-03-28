@@ -62,9 +62,8 @@ if [ $? == 0 ]; then
    echo "Image downloaded"
 fi
 set +e
-#7z x $IMAGES/*.zip -o$IMAGES
 
-unzip $IMAGES/*.zip -d $IMAGES
+unzip $IMAGES/*.zip -d$IMAGES
 if [ $?==0 ]; then
        echo "File unziped without errors"
 else
