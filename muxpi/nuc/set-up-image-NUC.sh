@@ -97,11 +97,12 @@ stm -dut
 # time for flashing
 cd /home/muxpi/scripts
 
-while ! ping -c 1 -W 1  $DUT_IP; do
-    echo "Waiting for  ${DUT_IP} - network interface might be down..."
-    sleep 1
-done
+#while ! ping -c 1 -W 1  $DUT_IP; do
+   # echo "Waiting for  ${DUT_IP} - network interface might be down..."
+  #  sleep 1
+#done
 
+./ethup.sh $DUT_IP
 scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/muxpi/scripts/validation-NUC.sh root@$DUT_IP:/home
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@$DUT_IP "/home/validation-NUC.sh"
 
