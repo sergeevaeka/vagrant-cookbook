@@ -36,53 +36,56 @@ HOME="/home/muxpi"
 IMAGES="${HOME}/images"
 
 # delete the image folder with old images
-rm -rf $IMAGES
+#rm -rf $IMAGES
 
 #The url for the latest successful nightly build.
 VARIANT_MINIMAL="core-image-pelux-minimal-dev-intel-corei7-64"
-URL_MINIMAL="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_intel/$VARIANT_MINIMAL*/*zip*/artifacts_intel.zip"
+#URL_MINIMAL="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_intel/$VARIANT_MINIMAL*/*zip*/artifacts_intel.zip"
 
 VARIANT_NEPTUNE="core-image-pelux-qtauto-neptune-dev-intel-corei7-64"
-URL_NEPTUNE="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_intel-qtauto/$VARIANT_NEPTUNE*/*zip*/artifacts_intel-qtauto.zip"
+#URL_NEPTUNE="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_intel-qtauto/$VARIANT_NEPTUNE*/*zip*/artifacts_intel-qtauto.zip"
 
 VARIANT="core-image-pelux-minimal-dev-intel-corei7-64"
 URL=""
 if [ "$NEPTUNE_IMAGE" == neptune ]; then
-   VARIANT=$VARIANT_NEPTUNE
-   URL=$URL_NEPTUNE
+  VARIANT=$VARIANT_NEPTUNE
+  # URL=$URL_NEPTUNE
 else 
-   VARIANT=$VARIANT_MINIMAL
-   URL=$URL_MINIMAL
+  VARIANT=$VARIANT_MINIMAL
+  # URL=$URL_MINIMAL
 fi
 
-mkdir -p $IMAGES
+#mkdir -p $IMAGES
 
-wget -nv $URL -P $IMAGES
-if [ $? == 0 ]; then
-   echo "Image downloaded"
-fi
-set +e
+#wget -nv $URL -P $IMAGES
+#if [ $? == 0 ]; then
+ #  echo "Image downloaded"
+#fi
+#set +e
 
-unzip $IMAGES/*.zip -d$IMAGES
-if [ $?==0 ]; then
-       echo "File unziped without errors"
-else
-       echo"Eror during unzip"
-       exit
-fi
+#unzip $IMAGES/*.zip -d$IMAGES
+#if [ $?==0 ]; then
+#       echo "File unziped without errors"
+#else
+#       echo"Eror during unzip"
+#       exit
+#fi
 
-mv $IMAGES/$VARIANT* $IMAGES/$VARIANT
-if [ $? == 0 ]; then
-       echo "rename the file success"
-else 
-       echo "fail rename the file"
-       exit
-fi
+#rm -rf /home/muxpi/images/*.zip
+
+#mv $IMAGES/$VARIANT* $IMAGES/$VARIANT
+#if [ $? == 0 ]; then
+#       echo "rename the file success"
+#else 
+ #      echo "fail rename the file"
+  #     exit
+#fi
 set -e
 echo "{\"${VARIANT}\":\"\"}" > $HOME/map.json
 echo "Json map is ready. Compressing the downloaded image... "
+
 cd $IMAGES
-tar -czvf $VARIANT.tar.gz $VARIANT
+#tar -czvf $VARIANT.tar.gz $VARIANT
 # fota requires the card device to be flashed, the json map which contains
 # the image and partitions, and finally the compressed image on tar.gz
 stm -ts

@@ -2,7 +2,7 @@
  DUT_IP="$1"
  n=1 
  max=5
- delay=5
+ delay=50
  while true; do
     ping -c 1 -W 1 $DUT_IP && break || {
       if [[ $n -lt $max ]]; then
