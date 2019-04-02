@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 ARCHVARIANT="$1"
-NEPTUNE_IMAGE="$2"
+DUT_IP="$2"
+NEPTUNE_IMAGE="$3"
 
 MUXPI="$HOME/muxpi"
 IMAGES="$MUXPI/images"
-DUT_IP="172.31.173.180"
 
 
 rm -rf $IMAGES
