@@ -56,7 +56,7 @@ stm -dut
 
 cd /home/muxpi/scripts
 
-
 $HOME/scripts/ethup.sh $DUT_IP
+
 scp  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /home/muxpi/scripts/validation-NUC.sh root@$DUT_IP:/home	
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@$DUT_IP "/home/validation-NUC.sh"

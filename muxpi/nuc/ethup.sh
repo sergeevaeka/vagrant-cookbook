@@ -6,8 +6,8 @@ delay=50
 while true; do
    ping -c 1 -W 1 $DUT_IP && break || {
      if [[ $n -lt $max ]]; then
-       ((n++))
        echo "Command failed. Attempt $n/$max:"
+       ((n++))
        sleep $delay;
      else
        echo "The command has failed after $n attempts."
