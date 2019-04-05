@@ -16,20 +16,20 @@ URL_MINIMAL="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessful
 VARIANT_NEPTUNE="core-image-pelux-qtauto-neptune-dev"
 URL_NEPTUNE="https://pelux.io/artifacts/core-image-pelux-qtauto-neptune-dev-intel-corei7-64.wic"
 
-#VARIANT=""
-#URL=""
-#if [ "$NEPTUNE_IMAGE" == neptune ]; then
-#   VARIANT=$VARIANT_NEPTUNE
- #  URL=$URL_NEPTUNE
-#else
- #  VARIANT=$VARIANT_MINIMAL
- #  URL=$URL_MINIMAL
-#fi
+VARIANT=""
+URL=""
+if [ "$NEPTUNE_IMAGE" == neptune ]; then
+   VARIANT=$VARIANT_NEPTUNE
+   URL=$URL_NEPTUNE
+else
+   VARIANT=$VARIANT_MINIMAL
+   URL=$URL_MINIMAL
+fi
 
-#if [ "$ARCHVARIANT" == "" ]; then
- #  echo "Please specify architecture. It can be 'intel' or 'rpi'"
-#   exit
-#fi
+if [ "$ARCHVARIANT" == "" ]; then
+   echo "Please specify architecture. It can be 'intel' or 'rpi'"
+   exit
+fi
 
 mkdir -p $MUXPI
 mkdir -p $IMAGES
