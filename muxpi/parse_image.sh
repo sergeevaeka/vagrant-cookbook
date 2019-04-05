@@ -14,7 +14,7 @@ VARIANT_MINIMAL="core-image-pelux-minimal-dev"
 URL_MINIMAL="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_$ARCHVARIANT/$VARIANT_MINIMAL*/*zip*/artifacts_$ARCHVARIANT.zip"
 
 VARIANT_NEPTUNE="core-image-pelux-qtauto-neptune-dev"
-URL_NEPTUNE="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_$ARCHVARIANT-qtauto/*zip*/artifacts_$ARCHVARIANT-qtauto.zip"
+URL_NEPTUNE="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_$ARCHVARIANT-qtauto/$VARIANT_NEPTUNE*/*zip*/artifacts_$ARCHVARIANT-qtauto.zip"
 
 VARIANT=""
 URL=""
