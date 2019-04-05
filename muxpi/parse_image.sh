@@ -14,22 +14,22 @@ VARIANT_MINIMAL="core-image-pelux-minimal-dev"
 URL_MINIMAL="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_$ARCHVARIANT/$VARIANT_MINIMAL*/*zip*/artifacts_$ARCHVARIANT.zip"
 
 VARIANT_NEPTUNE="core-image-pelux-qtauto-neptune-dev"
-URL_NEPTUNE="https://pelux.io/jenkins/job/pelux-manifests_NIGHTLY/lastSuccessfulBuild/artifact/artifacts_$ARCHVARIANT-qtauto/$VARIANT_NEPTUNE*/*zip*/artifacts_$ARCHVARIANT-qtauto.zip"
+URL_NEPTUNE="https://pelux.io/artifacts/core-image-pelux-qtauto-neptune-dev-intel-corei7-64.wic"
 
-VARIANT=""
-URL=""
-if [ "$NEPTUNE_IMAGE" == neptune ]; then
-   VARIANT=$VARIANT_NEPTUNE
-   URL=$URL_NEPTUNE
-else
-   VARIANT=$VARIANT_MINIMAL
-   URL=$URL_MINIMAL
-fi
+#VARIANT=""
+#URL=""
+#if [ "$NEPTUNE_IMAGE" == neptune ]; then
+#   VARIANT=$VARIANT_NEPTUNE
+ #  URL=$URL_NEPTUNE
+#else
+ #  VARIANT=$VARIANT_MINIMAL
+ #  URL=$URL_MINIMAL
+#fi
 
-if [ "$ARCHVARIANT" == "" ]; then
-   echo "Please specify architecture. It can be 'intel' or 'rpi'"
-   exit
-fi
+#if [ "$ARCHVARIANT" == "" ]; then
+ #  echo "Please specify architecture. It can be 'intel' or 'rpi'"
+#   exit
+#fi
 
 mkdir -p $MUXPI
 mkdir -p $IMAGES
@@ -41,9 +41,9 @@ if [ $? == 0 ]; then
    echo "Image downloaded"
 fi
 
-set +e
-7z x $IMAGES/*.zip -o$IMAGES 
-set -e
+#set +e
+#7z x $IMAGES/*.zip -o$IMAGES 
+#set -e
 
 mv $IMAGES/$VARIANT* $IMAGES/$VARIANT
 
